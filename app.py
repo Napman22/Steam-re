@@ -67,7 +67,7 @@ def gameTags(app_id):
     return tag_list
 
 def gamePhotos(app_id):
-    url = url = f"https://store.steampowered.com/app/{app_id}"
+    url = f"https://store.steampowered.com/app/{app_id}"
     response = requests.get(url)
     
     if response.status_code != 200:
