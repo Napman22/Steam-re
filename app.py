@@ -91,7 +91,9 @@ def gamePhotos(app_id):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    steam_id = ''
     if request.method == 'POST':
+        steam_id = request.form.get('steam_id')
         profile_url = request.form['steam_id']
         user_id = extract_steam_id_from_url(profile_url)
         
@@ -108,7 +110,7 @@ def index():
         photo = gamePhotos(app_id)
 
         return render_template('index.html', game=randomGame['name'], 
-                               app_id=app_id, tags=tags if tags else 'No tags found', photo=photo if photo else 'No Photos found')
+                               steam_id=steam_id,app_id=app_id, tags=tags if tags else 'No tags found', photo=photo if photo else 'No Photos found')
 
     return render_template('index.html')
 

@@ -5,35 +5,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="../static/css/index.css">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Unplayed Steam Game</title>
 </head>
 <body>
-
-    <div>
-        <h1>Find a Random Unplayed Steam Game</h1>
-        <form method="POST">
+    
+    <div class="container">
+        
+        <h1 class="text">Find a Random Unplayed Steam Game</h1>
+        <form class="profile" method="POST">
             <label for="steam_id">Steam Profile URL:</label>
-            <input type="text" id="steam_id" name="steam_id" required>
+            <br />
+            <br />
+            <input type="text" id="steam_id" name="steam_id" value="{{ steam_id }}" required>
             <input type="submit" value="Submit">
         </form>
+        
     </div>
 
-
+   
     {% if game %}
-    <h2>Selected Game: {{ game }}</h2>
-    <p>Game ID: {{ app_id }}</p>
-    <p>Tags: {{ tags }}</p>
+    <div class="container2">
+        <h2>Selected Game: {{ game }}</h2>
+        <p>Game ID: {{ app_id }}</p>
+        <p>Tags: {{ tags }}</p>
 
-    <img src={{photo}}/>
+        <img src={{photo}} alt="Game Image" width="300"/>
 
-
-    {% elif error %}
-    <p style="color: red;">{{ error }}</p>
-    {% endif %}
+        {% elif error %}
+        <div class="container2">
+            <p style="color: red;">{{ error }}</p>
+        </div>
+    </div>
+        {% endif %}
+    
+    
 </body>
 
 </html>
