@@ -31,8 +31,8 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 400px;
-  width: 100%;
-  margin: 10px; 
+  width: 100%; /* Makes sure the container scales to the width of the viewport */
+  margin: 10px; /* Adds margin for spacing between containers */
 }
 
 
