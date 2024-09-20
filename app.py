@@ -89,6 +89,26 @@ def gamePhotos(app_id):
 
     return image_urls[0]
 
+def gameDescription(app_id):
+    url = f"https://store.steampowered.com/app/{app_id}"
+    response = requests.get(url)
+    
+    if response.status_code != 200:
+        return []
+    
+    soup = BeautifulSoup(response.content, 'html.parser')
+    desc_container = soup.find('div', class_="game_description_snippet")
+    
+    if not desc_container:
+        return []
+    
+    desciption = desc_container.get_text()
+    
+    print(desciption)
+    return desciption
+
+    
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     steam_id = ''
@@ -108,9 +128,13 @@ def index():
         app_id = randomGame['appid']
         tags = gameTags(app_id)
         photo = gamePhotos(app_id)
+        desc = gameDescription(app_id)
 
         return render_template('index.html', game=randomGame['name'], 
-                               steam_id=steam_id,app_id=app_id, tags=tags if tags else 'No tags found', photo=photo if photo else 'No Photos found')
+                               steam_id=steam_id,app_id=app_id, tags=tags if tags else 'No tags found', 
+                               photo=photo if photo else 'No Photos found',
+                               desc = desc if desc else 'No Description found'
+                               )
 
     return render_template('index.html')
 

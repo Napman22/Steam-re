@@ -30,10 +30,11 @@
     {% if game %}
     <div class="container2">
         <h2>Selected Game: {{ game }}</h2>
-        <p>Game ID: {{ app_id }}</p>
-        <p>Tags: {{ tags }}</p>
-
         <img src={{photo}} alt="Game Image" width="300"/>
+        <p>Game ID: {{ app_id }}</p>
+        <p>Desc: {{ desc }}</p>
+
+
 
         {% elif error %}
         <div class="container2">
